@@ -1,0 +1,91 @@
+:root {
+  --bg: #0b0b0f;
+  --surface: #16161d;
+  --surface-2: #1f1f28;
+  --border: #2a2a36;
+  --text: #f4f4f8;
+  --muted: #9b9bb0;
+  --accent: #22e57a;      /* cor principal: troque aqui */
+  --accent-2: #00c2ff;
+  --accent-ink: #03140a;
+  --whats: #25d366;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; min-height: 100dvh;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background:
+    radial-gradient(700px 450px at 50% -10%, rgba(34, 229, 122, .28), transparent 70%),
+    radial-gradient(500px 400px at 100% 60%, rgba(0, 194, 255, .12), transparent 70%),
+    radial-gradient(500px 400px at 0% 100%, rgba(34, 229, 122, .12), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  display: flex; justify-content: center;
+  padding: max(40px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+}
+main { width: 100%; max-width: 440px; display: flex; flex-direction: column; align-items: center; }
+
+/* ===== Perfil ===== */
+.logo {
+  width: 96px; height: 96px; border-radius: 28px;
+  display: grid; place-items: center; overflow: hidden;
+  background: var(--accent); color: var(--accent-ink);
+  box-shadow: 0 12px 40px rgba(34, 229, 122, .35);
+}
+.logo svg { width: 54px; height: 54px; }
+.logo img { width: 100%; height: 100%; object-fit: cover; }
+h1 {
+  margin: 18px 0 6px; font-size: 30px; font-weight: 800; letter-spacing: -.02em; text-align: center;
+  color: #ffffff;         /* cor do nome: troque aqui */
+  text-shadow: 0 0 12px rgba(34, 229, 122, .3);
+}
+.slogan { margin: 0 0 30px; color: var(--muted); text-align: center; font-size: 15px; line-height: 1.5; }
+
+/* ===== Botões ===== */
+.grupo { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+.titulo {
+  width: 100%; margin: 26px 0 12px; display: flex; align-items: center; gap: 12px;
+  color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+}
+.titulo::before, .titulo::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+.btn {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; min-height: 64px; padding: 12px 18px;
+  border-radius: 18px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text);
+  text-decoration: none; font-weight: 700; font-size: 16px;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+  -webkit-tap-highlight-color: transparent;
+  animation: entra .45s ease backwards;
+}
+.btn:hover { background: var(--surface-2); border-color: #3a3a4a; transform: translateY(-2px); }
+.btn:active { transform: scale(.98); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.btn .ico {
+  width: 40px; height: 40px; flex: none; border-radius: 12px;
+  display: grid; place-items: center; background: var(--surface-2);
+}
+.btn .ico svg { width: 22px; height: 22px; fill: currentColor; }
+.btn .txt { display: flex; flex-direction: column; line-height: 1.25; flex: 1; min-width: 0; }
+.btn .txt small { font-size: 12px; font-weight: 500; color: var(--muted); }
+.btn .seta { color: var(--muted); font-size: 20px; }
+
+.btn.loja { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.loja:hover { background: #4cf096; }
+.btn.loja .ico { background: rgba(0, 0, 0, .1); }
+.btn.loja .txt small, .btn.loja .seta { color: rgba(3, 20, 10, .7); }
+
+.btn.cidade .ico { background: rgba(37, 211, 102, .14); color: var(--whats); }
+.btn.insta .ico {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  color: #fff;
+}
+
+@keyframes entra { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .btn { animation: none; transition: none; } }
+
+footer { margin-top: 36px; color: var(--muted); font-size: 12px; text-align: center; }
